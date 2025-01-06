@@ -4,9 +4,8 @@ agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu2004
-
 blocks:
-  - name: "Install Dependencies"
+  - name: Install Dependencies
     task:
       prologue:
         commands:
@@ -18,15 +17,14 @@ blocks:
             - cache restore
             - pip download --cache-dir .pip_cache -r requirements.txt
             - cache store
-
-  - name: "Run Tests"
+  - name: Run Tests
     task:
       prologue:
         commands:
-            - checkout
-            - cache restore
-            - pip install -r requirements.txt --cache-dir .pip_cache
+          - checkout
+          - cache restore
+          - pip install -r requirements.txt --cache-dir .pip_cache
       jobs:
         - name: Run BDD Tests
           commands:
-            - python -m behave 
+            - python -m behave
